@@ -26,12 +26,14 @@ import React, { Component } from 'react';
   // }
 // }
 
-const FilteredFruitList = (props) => {
-  const list = !props.filter || props.filter === 'all' ? props.items : props.items.filter(i => i.fruit_type === props.filter);
+// const FilteredFruitList = (props) => {
+//   const list = !props.filter || props.filter === 'all' ? props.items : props.items.filter(i => i.fruit_type === props.filter);
 
+const FilteredFruitList = ({ fruit, filter }) => {
+  const fruitList = !filter ?  fruit : fruit.filter(item => item.fruit_type === filter);
   return (
     <ul className="fruit-list">
-      {list.map((item, index) => <li key={index}>{item.char}</li>)}
+      {fruitList.map((item, index) => <li key={index}>{item.char}</li>)}
     </ul>
   );
 }
