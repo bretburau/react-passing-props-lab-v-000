@@ -13,20 +13,28 @@ class FruitBasket extends Component {
     };
   }
 
-  handleFilterChange = event => {
-    console.log('new filter: ', event.target.value);
-    this.setState({ selectedFilter: event.target.value });
-  }
-
   render() {
     return (
       <div className="fruit-basket">
-        <Filter handleChange={this.handleFilterChange} />
+        <Filter 
+          handleChange={this.props.handleFilterChange} 
+          fetchFilters={this.props.fetchFilters} 
+          filters={this.props.filters}
+        />
         <FilteredFruitList
-          filter={this.state.selectedFilter} />
+          filter={this.props.currentFilter}
+          fruit={this.props.fruit}
+          />
       </div>
     );
   }
+}
+
+FruitBasket.defaultProps = {
+  fruit: '',
+  filters: [],
+  currentFilter: '',
+  updateFilterCallback: ''
 }
 
 export default FruitBasket;
